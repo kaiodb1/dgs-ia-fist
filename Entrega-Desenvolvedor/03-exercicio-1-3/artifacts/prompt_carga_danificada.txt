@@ -1,0 +1,48 @@
+### System prompt
+Você é o assistente interno da NovaTech para o time de atendimento.
+
+Regras obrigatórias:
+1. Responda em português do Brasil.
+2. Use somente informações presentes nos chunks recuperados.
+3. Cite a fonte no corpo da resposta em formato [documento | seção].
+4. Se a informação não estiver coberta pelos chunks, diga explicitamente que a base recuperada não cobre a resposta.
+5. Se houver conflito entre fontes, explique o conflito e aplique esta prioridade:
+   - documentos normativos/contratuais;
+   - procedimento mais recente quando houver múltiplas versões da mesma PROC;
+   - FAQ apenas como complemento operacional, nunca como fonte única para regra crítica.
+6. Não invente prazos, tiers, multiplicadores, regras comerciais ou exceções.
+7. Quando a pergunta exigir decisão de negócio ou tratamento especial, indique o encaminhamento encontrado nos chunks.
+
+### Chunks recuperados
+[Chunk 1] documento=FAQ-ATENDIMENTO; seção=Perguntas selecionadas (das 47 do documento original) > Item 38 — "Cliente quer saber a política para carga que chegou danificada."; autoridade=informal; similaridade=0.6308; referencias=FAQ-38
+Documento: FAQ-ATENDIMENTO | Tipo: informal | Seção: Perguntas selecionadas (das 47 do documento original) > Item 38 — "Cliente quer saber a política para carga que chegou danificada."
+Carga danificada em trânsito tem processo diferente de devolução. O cliente precisa registrar a ocorrência em até 48h após o recebimento, com fotos e laudo se possível. A NovaTech investiga e, se comprovada responsabilidade nossa, reembolsa integralmente. Mas isso passa pelo Jurídico, não pelo atendimento normal — encaminhe para o e-mail sinistros@novatech.com.br.
+
+[Chunk 2] documento=SLA-2024; seção=3. Definição de incidente crítico; autoridade=contratual; similaridade=0.5626; referencias=SLA-2024-D
+Documento: SLA-2024 | Tipo: contratual | Seção: 3. Definição de incidente crítico
+Um incidente é classificado como crítico quando atende a pelo menos um dos seguintes critérios:
+
+- Carga com valor declarado acima de R$ 100.000 está com status desconhecido há mais de 6 horas.
+- Carga perigosa com qualquer irregularidade de documentação ou rastreamento.
+- Mais de 5 chamados do mesmo cliente nas últimas 24 horas sobre o mesmo problema.
+- Qualquer situação que envolva risco à segurança de pessoas.
+
+[Chunk 3] documento=FAQ-ATENDIMENTO; seção=Perguntas selecionadas (das 47 do documento original) > Item 22 — "Cliente quer saber sobre seguro de carga. O que falar?"; autoridade=informal; similaridade=0.5554; referencias=FAQ-22
+Documento: FAQ-ATENDIMENTO | Tipo: informal | Seção: Perguntas selecionadas (das 47 do documento original) > Item 22 — "Cliente quer saber sobre seguro de carga. O que falar?"
+A NovaTech oferece seguro de carga como adicional. O valor é 0,3% do valor declarado da mercadoria para cargas padrão e 0,8% para cargas perigosas. Detalhe: isso vale para contratos a partir de 2023. Contratos mais antigos podem ter percentuais diferentes — confirme com o Comercial.
+
+[Chunk 4] documento=POL-001; seção=3. Regras de Devolução > 3.5. Custos de devolução; autoridade=normativo; similaridade=0.5410; referencias=POL-001-D
+Documento: POL-001 | Tipo: normativo | Seção: 3. Regras de Devolução > 3.5. Custos de devolução
+- Defeito ou erro da NovaTech (carga errada, avaria em trânsito): devolução sem custo para o cliente.
+- Desistência do cliente (carga correta, sem defeito): o custo do frete reverso é do cliente, calculado com os mesmos multiplicadores do frete original.
+- Prazo expirado (solicitação após 7 dias úteis): não elegível para devolução padrão. Encaminhar ao Comercial para negociação caso a caso.
+
+[Chunk 5] documento=FAQ-ATENDIMENTO; seção=Perguntas selecionadas (das 47 do documento original) > Item 32 — "Pode enviar carga perigosa com frete expresso?"; autoridade=informal; similaridade=0.5397; referencias=FAQ-32
+Documento: FAQ-ATENDIMENTO | Tipo: informal | Seção: Perguntas selecionadas (das 47 do documento original) > Item 32 — "Pode enviar carga perigosa com frete expresso?"
+Sim, mas precisa de autorização do Compliance e a documentação ANTT tem que estar atualizada. Na prática, demora uns 2 dias para conseguir a autorização, então o 'expresso' acaba não sendo tão expresso. Avise o cliente sobre isso.
+
+### Pergunta do atendente
+O que acontece com carga danificada?
+
+### Instrução final
+Responda de forma objetiva, com indicação das fontes. Se não houver cobertura suficiente nos chunks, diga isso explicitamente.

@@ -1,0 +1,63 @@
+### System prompt
+Você é o assistente interno da NovaTech para o time de atendimento.
+
+Regras obrigatórias:
+1. Responda em português do Brasil.
+2. Use somente informações presentes nos chunks recuperados.
+3. Cite a fonte no corpo da resposta em formato [documento | seção].
+4. Se a informação não estiver coberta pelos chunks, diga explicitamente que a base recuperada não cobre a resposta.
+5. Se houver conflito entre fontes, explique o conflito e aplique esta prioridade:
+   - documentos normativos/contratuais;
+   - procedimento mais recente quando houver múltiplas versões da mesma PROC;
+   - FAQ apenas como complemento operacional, nunca como fonte única para regra crítica.
+6. Não invente prazos, tiers, multiplicadores, regras comerciais ou exceções.
+7. Quando a pergunta exigir decisão de negócio ou tratamento especial, indique o encaminhamento encontrado nos chunks.
+
+### Chunks recuperados
+[Chunk 1] documento=SLA-2024; seção=2. Tabela de SLAs; autoridade=contratual; similaridade=0.8026; referencias=SLA-2024-B
+Documento: SLA-2024 | Tipo: contratual | Seção: 2. Tabela de SLAs
+Tabela normalizada:
+Subtema: SLAs para chamados gerais.
+- Gold: Tempo de primeira resposta (chamados gerais): Até 2h úteis; Tempo de resolução (chamados gerais): Até 24h úteis.
+- Silver: Tempo de primeira resposta (chamados gerais): Até 4h úteis; Tempo de resolução (chamados gerais): Até 48h úteis.
+- Standard: Tempo de primeira resposta (chamados gerais): Até 8h úteis; Tempo de resolução (chamados gerais): Até 72h úteis.
+
+Tabela original markdown:
+| Métrica | Gold | Silver | Standard |
+|---------|------|--------|----------|
+| Tempo de primeira resposta (chamados gerais) | Até 2h úteis | Até 4h úteis | Até 8h úteis |
+| Tempo de resolução (chamados gerais) | Até 24h úteis | Até 48h úteis | Até 72h úteis |
+
+[Chunk 2] documento=SLA-2024; seção=5. Medição e reportes; autoridade=contratual; similaridade=0.6373; referencias=sem mapeamento Anexo B
+Documento: SLA-2024 | Tipo: contratual | Seção: 5. Medição e reportes
+Os SLAs são medidos pelo sistema de chamados (Azure DevOps) a partir do timestamp de abertura do chamado. O relógio de SLA pausa fora do horário comercial (08h-18h, dias úteis) para chamados gerais, mas não pausa para incidentes críticos de clientes Gold.
+
+[Chunk 3] documento=FAQ-ATENDIMENTO; seção=Perguntas selecionadas (das 47 do documento original) > Item 41 — "Qual a diferença entre SLA de resposta e SLA de resolução?"; autoridade=informal; similaridade=0.6133; referencias=FAQ-41
+Documento: FAQ-ATENDIMENTO | Tipo: informal | Seção: Perguntas selecionadas (das 47 do documento original) > Item 41 — "Qual a diferença entre SLA de resposta e SLA de resolução?"
+Resposta é quando a gente dá o primeiro retorno ao cliente (mesmo que seja 'estamos verificando'). Resolução é quando o problema é efetivamente resolvido. O Gold tem 2h de resposta e 24h de resolução. Silver é 4h e 48h. Standard é 8h e 72h. Para incidentes críticos, os prazos são menores — veja a tabela SLA-2024.
+
+[Chunk 4] documento=SLA-2024; seção=2. Tabela de SLAs; autoridade=contratual; similaridade=0.6017; referencias=SLA-2024-C
+Documento: SLA-2024 | Tipo: contratual | Seção: 2. Tabela de SLAs
+Tabela normalizada:
+Subtema: SLAs para incidentes críticos.
+- Gold: Tempo de primeira resposta (incidentes críticos): Até 30min; Tempo de resolução (incidentes críticos): Até 4h.
+- Silver: Tempo de primeira resposta (incidentes críticos): Até 1h; Tempo de resolução (incidentes críticos): Até 8h.
+- Standard: Tempo de primeira resposta (incidentes críticos): Até 2h; Tempo de resolução (incidentes críticos): Até 24h.
+
+Tabela original markdown:
+| Métrica | Gold | Silver | Standard |
+|---------|------|--------|----------|
+| Tempo de primeira resposta (incidentes críticos) | Até 30min | Até 1h | Até 2h |
+| Tempo de resolução (incidentes críticos) | Até 4h | Até 8h | Até 24h |
+
+[Chunk 5] documento=SLA-2024; seção=4. Penalidades por descumprimento; autoridade=contratual; similaridade=0.5788; referencias=SLA-2024-E
+Documento: SLA-2024 | Tipo: contratual | Seção: 4. Penalidades por descumprimento
+- Primeira violação de SLA no mês: registro interno, sem impacto contratual.
+- Segunda violação no mesmo mês: crédito de 5% sobre o valor do frete do chamado afetado.
+- Terceira violação ou mais no mesmo mês: crédito de 10% + reunião obrigatória com o gerente de conta (Gold) ou gerente de operações (Silver/Standard).
+
+### Pergunta do atendente
+Qual o SLA do cliente Gold?
+
+### Instrução final
+Responda de forma objetiva, com indicação das fontes. Se não houver cobertura suficiente nos chunks, diga isso explicitamente.

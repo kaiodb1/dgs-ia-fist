@@ -1,0 +1,85 @@
+### System prompt
+Você é o assistente interno da NovaTech para o time de atendimento.
+
+Regras obrigatórias:
+1. Responda em português do Brasil.
+2. Use somente informações presentes nos chunks recuperados.
+3. Cite a fonte no corpo da resposta em formato [documento | seção].
+4. Se a informação não estiver coberta pelos chunks, diga explicitamente que a base recuperada não cobre a resposta.
+5. Se houver conflito entre fontes, explique o conflito e aplique esta prioridade:
+   - documentos normativos/contratuais;
+   - procedimento mais recente quando houver múltiplas versões da mesma PROC;
+   - FAQ apenas como complemento operacional, nunca como fonte única para regra crítica.
+6. Não invente prazos, tiers, multiplicadores, regras comerciais ou exceções.
+7. Quando a pergunta exigir decisão de negócio ou tratamento especial, indique o encaminhamento encontrado nos chunks.
+
+### Chunks recuperados
+[Chunk 1] documento=PROC-042-v2; seção=2. Fórmula de cálculo > 2.1. Multiplicadores regionais (atualizados em novembro/2023); autoridade=procedimento; similaridade=0.7084; referencias=PROC-042v2-B
+Documento: PROC-042-v2 | Tipo: procedimento | Seção: 2. Fórmula de cálculo > 2.1. Multiplicadores regionais (atualizados em novembro/2023)
+Tabela normalizada:
+- Região: Sul; Multiplicador: 1.3.
+- Região: Sudeste; Multiplicador: 1.1.
+- Região: Centro-Oeste; Multiplicador: 1.4.
+- Região: Nordeste; Multiplicador: 1.5.
+- Região: Norte; Multiplicador: 1.8.
+
+Tabela original markdown:
+| Região | Multiplicador |
+|--------|--------------|
+| Sul | 1.3 |
+| Sudeste | 1.1 |
+| Centro-Oeste | 1.4 |
+| Nordeste | 1.5 |
+| Norte | 1.8 |
+
+[Chunk 2] documento=PROC-042; seção=2. Fórmula de cálculo > 2.1. Multiplicadores regionais; autoridade=procedimento; similaridade=0.6785; referencias=PROC-042-B
+Documento: PROC-042 | Tipo: procedimento | Seção: 2. Fórmula de cálculo > 2.1. Multiplicadores regionais
+Tabela normalizada:
+- Região: Sul; Multiplicador: 1.2.
+- Região: Sudeste; Multiplicador: 1.0.
+- Região: Centro-Oeste; Multiplicador: 1.3.
+- Região: Nordeste; Multiplicador: 1.4.
+- Região: Norte; Multiplicador: 1.6.
+
+Tabela original markdown:
+| Região | Multiplicador |
+|--------|--------------|
+| Sul | 1.2 |
+| Sudeste | 1.0 |
+| Centro-Oeste | 1.3 |
+| Nordeste | 1.4 |
+| Norte | 1.6 |
+
+[Chunk 3] documento=PROC-042-v2; seção=2. Fórmula de cálculo; autoridade=procedimento; similaridade=0.5989; referencias=PROC-042v2-A
+Documento: PROC-042-v2 | Tipo: procedimento | Seção: 2. Fórmula de cálculo
+O frete especial é calculado como:
+
+Valor do frete = Valor base × Multiplicador regional × Fator de peso
+
+Onde:
+
+- Valor base = tarifa publicada na tabela mensal de fretes.
+- Multiplicador regional = fator aplicado conforme a região de destino (seção 2.1).
+- Fator de peso = 1.0 para cargas de 500kg a 1.000kg; 1.15 para cargas de 1.001kg a 3.000kg; 1.4 para cargas acima de 3.000kg.
+
+[Chunk 4] documento=PROC-042; seção=2. Fórmula de cálculo; autoridade=procedimento; similaridade=0.5734; referencias=PROC-042-A
+Documento: PROC-042 | Tipo: procedimento | Seção: 2. Fórmula de cálculo
+O frete especial é calculado como:
+
+Valor do frete = Valor base × Multiplicador regional × Fator de peso
+
+Onde:
+
+- Valor base = tarifa publicada na tabela mensal de fretes.
+- Multiplicador regional = fator aplicado conforme a região de destino (seção 2.1).
+- Fator de peso = 1.0 para cargas de 500kg a 1.000kg; 1.2 para cargas de 1.001kg a 3.000kg; 1.5 para cargas acima de 3.000kg.
+
+[Chunk 5] documento=FAQ-ATENDIMENTO; seção=Perguntas selecionadas (das 47 do documento original) > Item 8 — "Como funciona o frete especial?"; autoridade=informal; similaridade=0.5669; referencias=FAQ-08
+Documento: FAQ-ATENDIMENTO | Tipo: informal | Seção: Perguntas selecionadas (das 47 do documento original) > Item 8 — "Como funciona o frete especial?"
+Acima de 500kg, aplica a tabela de multiplicadores por região. Cuidado: existem duas versões da PROC-042. A mais recente tem multiplicadores mais altos. Na dúvida, use a mais recente (v2), mas se o cliente reclamar do valor, pode ser que o contrato dele ainda esteja na tabela antiga.
+
+### Pergunta do atendente
+Frete para 600kg para Manaus?
+
+### Instrução final
+Responda de forma objetiva, com indicação das fontes. Se não houver cobertura suficiente nos chunks, diga isso explicitamente.

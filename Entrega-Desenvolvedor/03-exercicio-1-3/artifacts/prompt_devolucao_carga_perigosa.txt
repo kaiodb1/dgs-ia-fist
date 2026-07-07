@@ -1,0 +1,54 @@
+### System prompt
+Você é o assistente interno da NovaTech para o time de atendimento.
+
+Regras obrigatórias:
+1. Responda em português do Brasil.
+2. Use somente informações presentes nos chunks recuperados.
+3. Cite a fonte no corpo da resposta em formato [documento | seção].
+4. Se a informação não estiver coberta pelos chunks, diga explicitamente que a base recuperada não cobre a resposta.
+5. Se houver conflito entre fontes, explique o conflito e aplique esta prioridade:
+   - documentos normativos/contratuais;
+   - procedimento mais recente quando houver múltiplas versões da mesma PROC;
+   - FAQ apenas como complemento operacional, nunca como fonte única para regra crítica.
+6. Não invente prazos, tiers, multiplicadores, regras comerciais ou exceções.
+7. Quando a pergunta exigir decisão de negócio ou tratamento especial, indique o encaminhamento encontrado nos chunks.
+
+### Chunks recuperados
+[Chunk 1] documento=FAQ-ATENDIMENTO; seção=Perguntas selecionadas (das 47 do documento original) > Item 3 — "Cliente perguntou se pode devolver carga perigosa. O que respondo?"; autoridade=informal; similaridade=0.7553; referencias=FAQ-03
+Documento: FAQ-ATENDIMENTO | Tipo: informal | Seção: Perguntas selecionadas (das 47 do documento original) > Item 3 — "Cliente perguntou se pode devolver carga perigosa. O que respondo?"
+Na prática, a gente orienta o cliente a ligar no ramal 4500 (Gestão de Riscos). Oficialmente não pode pelo processo padrão, mas já tiveram casos em que o pessoal de Riscos autorizou exceção. Então não diga que é impossível — diga que precisa de tratamento especial.
+
+[Chunk 2] documento=POL-001; seção=3. Regras de Devolução > 3.2. Exceções ao prazo geral; autoridade=normativo; similaridade=0.6279; referencias=POL-001-B
+Documento: POL-001 | Tipo: normativo | Seção: 3. Regras de Devolução > 3.2. Exceções ao prazo geral
+As seguintes categorias de carga NÃO são elegíveis para devolução pelo processo padrão:
+
+- Cargas perigosas classificadas nas classes 1 a 6 da ANTT (Agência Nacional de Transportes Terrestres), conforme Resolução ANTT nº 5.947/2021. Inclui: explosivos (classe 1), gases (classe 2), líquidos inflamáveis (classe 3), sólidos inflamáveis (classe 4), oxidantes e peróxidos (classe 5), substâncias tóxicas e infectantes (classe 6).
+- Cargas refrigeradas que tenham rompido a cadeia de frio (temperatura fora da faixa especificada na nota fiscal por mais de 30 minutos contínuos, conforme registro do sensor IoT).
+- Cargas com lacre de segurança violado, salvo quando a violação for documentada no ato de entrega com assinatura do motorista e do recebedor.
+
+Para essas categorias, o cliente deve entrar em contato com o setor de Gestão de Riscos (ramal 4500) para tratamento individual.
+
+[Chunk 3] documento=FAQ-ATENDIMENTO; seção=Perguntas selecionadas (das 47 do documento original) > Item 32 — "Pode enviar carga perigosa com frete expresso?"; autoridade=informal; similaridade=0.5652; referencias=FAQ-32
+Documento: FAQ-ATENDIMENTO | Tipo: informal | Seção: Perguntas selecionadas (das 47 do documento original) > Item 32 — "Pode enviar carga perigosa com frete expresso?"
+Sim, mas precisa de autorização do Compliance e a documentação ANTT tem que estar atualizada. Na prática, demora uns 2 dias para conseguir a autorização, então o 'expresso' acaba não sendo tão expresso. Avise o cliente sobre isso.
+
+[Chunk 4] documento=SLA-2024; seção=3. Definição de incidente crítico; autoridade=contratual; similaridade=0.5637; referencias=SLA-2024-D
+Documento: SLA-2024 | Tipo: contratual | Seção: 3. Definição de incidente crítico
+Um incidente é classificado como crítico quando atende a pelo menos um dos seguintes critérios:
+
+- Carga com valor declarado acima de R$ 100.000 está com status desconhecido há mais de 6 horas.
+- Carga perigosa com qualquer irregularidade de documentação ou rastreamento.
+- Mais de 5 chamados do mesmo cliente nas últimas 24 horas sobre o mesmo problema.
+- Qualquer situação que envolva risco à segurança de pessoas.
+
+[Chunk 5] documento=POL-001; seção=3. Regras de Devolução > 3.5. Custos de devolução; autoridade=normativo; similaridade=0.5519; referencias=POL-001-D
+Documento: POL-001 | Tipo: normativo | Seção: 3. Regras de Devolução > 3.5. Custos de devolução
+- Defeito ou erro da NovaTech (carga errada, avaria em trânsito): devolução sem custo para o cliente.
+- Desistência do cliente (carga correta, sem defeito): o custo do frete reverso é do cliente, calculado com os mesmos multiplicadores do frete original.
+- Prazo expirado (solicitação após 7 dias úteis): não elegível para devolução padrão. Encaminhar ao Comercial para negociação caso a caso.
+
+### Pergunta do atendente
+Posso devolver carga perigosa?
+
+### Instrução final
+Responda de forma objetiva, com indicação das fontes. Se não houver cobertura suficiente nos chunks, diga isso explicitamente.
